@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Nfe.Dominio.Entidades.NfeEndereco" Collapsed="true">
+    <Position X="2" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GCAACAAAAAQCACIEAAAAgAAAAAAAAABAAAAAACABAAA=</HashCode>
+      <FileName>Entidades\Endereco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nfe.Dominio.Entidades.NFePessoa" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAIAACgCAAEAAIAAAAAAIAEIAAAAAAAAAAAACAEAA=</HashCode>
+      <FileName>Entidades\NFePessoa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nfe.Dominio.Entidades.Emitente">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEQAAAAMASAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Entidades\Emitente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nfe.Dominio.Entidades.Entidade">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entidades\Entidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nfe.Dominio.Entidades.NotaFiscal" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAbKAQAACMIQAALChCTiJAREIgASQQQAAYEkDQIDgKA=</HashCode>
+      <FileName>Entidades\NotaFiscal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nfe.Dominio.Entidades.Produtos" Collapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIQAYQIAACBAIIAEAACACAAAiAAAAAAADEAAACJgEA=</HashCode>
+      <FileName>Entidades\Produtos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="TipoPesssoa" Collapsed="true">
+    <Position X="2" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Entidades\Emuns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
