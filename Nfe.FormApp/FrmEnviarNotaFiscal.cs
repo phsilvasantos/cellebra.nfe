@@ -31,17 +31,19 @@ namespace Nfe.FormApp
             {
                 cmdEnviar.Enabled = true;
                 cmdCancelarNota.Enabled = false;
-                cmdConsultar.Enabled = true;
+                cmdConsultar.Enabled = false;
                 cmdEnviarCartaCorrecao.Enabled = false;
             }
             else if (IDOperacao == 1)
             {
                 cmdEnviar.Enabled = false;
                 cmdCancelarNota.Enabled = true;
+                cmdConsultar.Enabled = false;
                 cmdEnviarCartaCorrecao.Enabled = false;
             }
             else if (IDOperacao == 2)
             {
+                cmdConsultar.Enabled = false;
                 RepositorioNotaFiscal nota = new RepositorioNotaFiscal();
                 nota.GetById(IDNotaFiscal,Operacao);
                 this.Dispose();
@@ -50,6 +52,7 @@ namespace Nfe.FormApp
             {
                 cmdEnviar.Enabled = false;
                 cmdCancelarNota.Enabled = false;
+                cmdConsultar.Enabled = true;
                 cmdEnviarCartaCorrecao.Enabled = false;
             }
             else if (IDOperacao == 4) // Carta de correção
@@ -71,11 +74,21 @@ namespace Nfe.FormApp
         {
             this.Enabled = false;
             this.cmdEnviar.Enabled = false;
+            RefreshButtons();
             Thread trd = new Thread(new ThreadStart(this.ProcessaEnvioNota));
             trd.IsBackground = false;
             trd.Start();
             this.Enabled = true;
         }
+
+        private void RefreshButtons()
+        {
+            this.cmdEnviar.Refresh();
+            this.cmdConsultar.Refresh();
+            this.cmdCancelarNota.Refresh();
+            this.cmdEnviarCartaCorrecao.Refresh();
+        }
+
 
         #region PROCESSOS
         private void ProcessaConsultaNota()
@@ -87,9 +100,11 @@ namespace Nfe.FormApp
             }
             else
             {
+                RefreshButtons();
                 SetControlPropertyValue(txtResultado, "Text", "Gerando Arquivo de Consulta....");
                 SetControlPropertyValue(txtResultado, "Text", servico.gerarConsultaNota(Chave.Text.Trim(),IDNfe));
             }
+
         }
         private void ProcessaEnvioNota()
         {
@@ -117,6 +132,7 @@ namespace Nfe.FormApp
                 this.Enabled = false;
                 cmdCancelarNota.Enabled = false;                
                 idNota = IDNfe;
+                SetControlPropertyValue(txtResultado, "Text", "Gerando arquivo de cancelamento da nota eletrônica....");
                 SetControlPropertyValue(txtResultado, "Text", servico.GerarCancelamentoNota(idNota, txtJustificativa.Text, Chave.Text,Operacao));
 
                 this.Enabled = true;
@@ -197,8 +213,9 @@ namespace Nfe.FormApp
 
         private void cmdCancelarNota_Click(object sender, EventArgs e)
         {
-            this.cmdCancelar.Enabled = false;
+            this.cmdCancelarNota.Enabled = false;
             this.Enabled = false;
+            RefreshButtons();
             //Thread trd = new Thread(new ThreadStart(this.ProcessaCancelamentoNota));
             //trd.IsBackground = false;
             //trd.Start();
@@ -210,6 +227,7 @@ namespace Nfe.FormApp
         {
             this.cmdEnviarCartaCorrecao.Enabled = false;
             this.Enabled = false;
+            RefreshButtons();
             Thread trd = new Thread(new ThreadStart(this.ProcessaCartaCorrecaoNota));
             trd.IsBackground = false;
             trd.Start();

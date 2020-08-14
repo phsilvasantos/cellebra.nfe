@@ -133,20 +133,31 @@ namespace Nfe.Infra
             FileInfo arqErr = new FileInfo(this.PathRetornoXMLErr);
             if (arq.Exists)
             {
-                 XmlDocument xml = new XmlDocument();
-                xml.Load(this.PathRetornoXML);
-                XmlNodeList retConsStatServ = null;
-                retConsStatServ = xml.GetElementsByTagName("retConsSitNFe");
-                foreach (XmlNode consStatServNode in retConsStatServ)
+                try
                 {
-                    XmlElement consStatServNodeElement = (XmlElement)consStatServNode;
-                    
-                    this.protocolo = consStatServNodeElement.GetElementsByTagName("nProt")[0].InnerText;
-                    this.resposta = consStatServNodeElement.GetElementsByTagName("xMotivo")[0].InnerText;
 
-                    this.DataCancelamentoOuEnvioNFE = consStatServNodeElement.GetElementsByTagName("dhRecbto")[0].InnerText.ToString().Substring(0,10);
-                    retorno = true;
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(this.PathRetornoXML);
+                    XmlNodeList retConsStatServ = null;
+                    retConsStatServ = xml.GetElementsByTagName("retConsSitNFe");
+                    foreach (XmlNode consStatServNode in retConsStatServ)
+                    {
+                        XmlElement consStatServNodeElement = (XmlElement)consStatServNode;
+
+                        XmlNodeList protocolo = doc.GetElementsByTagName("nProt");
+                        if (protocolo.Count > 0)
+                            this.protocolo = consStatServNodeElement.GetElementsByTagName("nProt")[0].InnerText;
+
+                        this.resposta = consStatServNodeElement.GetElementsByTagName("xMotivo")[0].InnerText;
+
+                        this.DataCancelamentoOuEnvioNFE = consStatServNodeElement.GetElementsByTagName("dhRecbto")[0].InnerText.ToString().Substring(0, 10);
+                        retorno = true;
+                    }
                 }
+                catch (Exception ex)
+                { 
+                }
+
             }
             else if (arqErr.Exists)
             {

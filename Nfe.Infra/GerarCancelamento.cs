@@ -231,9 +231,9 @@ namespace Nfe.Infra
         //Usado para retornar o status do cancelamento e updatar a nota
         public void GetResposta(int idNota,string justificativa = "",string chave = "")
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
                 if (verResposta(idNota,justificativa,chave))
                 {
                     break;
@@ -268,7 +268,10 @@ namespace Nfe.Infra
                          
                         this.resposta = new MensagemRetorno().MensagemDeRetorno(Convert.ToInt32(consStatServNodeElement.GetElementsByTagName("cStat")[0].InnerText), consStatServNodeElement.GetElementsByTagName("xMotivo")[0].InnerText);
 
-                        status.protocolo = consStatServNodeElement.GetElementsByTagName("nProt")[0].InnerText;
+                        XmlNodeList protocolo = doc.GetElementsByTagName("nProt");
+                        if (protocolo.Count > 0)
+                            status.protocolo = consStatServNodeElement.GetElementsByTagName("nProt")[0].InnerText;
+
                         status.DataCancelamentoOuEnvioNFE = consStatServNodeElement.GetElementsByTagName("dhRegEvento")[0].InnerText;
                         status.resposta = this.resposta;
 

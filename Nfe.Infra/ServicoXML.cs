@@ -87,7 +87,7 @@ namespace Nfe.Infra
             doc.InsertBefore(xmlDec, root);
             doc.AppendChild(Nfe);
             doc.Save(this.PathDestino);
-            Thread.Sleep(4000);
+            Thread.Sleep(2000);
             
             //Assinar();
             //Validar();
@@ -488,9 +488,9 @@ namespace Nfe.Infra
             }
             if (this.GerouNumeroReciboOK)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 100; i++)
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(2000);
                     if (getRetornoDoRecibo())
                     {
                         break;
@@ -513,7 +513,6 @@ namespace Nfe.Infra
             FileInfo arqErr = new FileInfo(PathRetornoXMLErr);
             if (arq.Exists)
             {
-              
                 XmlDocument xml = new XmlDocument();
                 xml.Load(PathRetornoXML);
                 XmlNodeList retConsStatServ = null;
@@ -541,8 +540,6 @@ namespace Nfe.Infra
                                  this.GerouProtocoloOK = false;
                                  throw new Exception(infRecElemento.GetElementsByTagName("xMotivo")[0].InnerText);
                              }
-                             
-                             
                          }                         
                      }                    
                     
@@ -584,7 +581,6 @@ namespace Nfe.Infra
 
             if (arqLt.Exists)
             {
-
                 //VERIFICAR QUE TIPO DE ERRO ELE RETORNA
                 XmlDocument xml = new XmlDocument();
                 xml.Load(arqLote);
@@ -699,14 +695,10 @@ namespace Nfe.Infra
             }
             rep.AtualizarStatus(this.Nota.Id, this.Resposta);
             rep.AtualizarConfirmaEnvio(this.Nota.Id);
-            
         }
 
         public void UsuarioDigitaChave(XmlDocument doc, string strUri, X509Certificate2 x509Certificado, string strArqXMLAssinado)
         {
-
-
-
             try
             {
                 // Verifica o certificado a ser utilizado na assinatura

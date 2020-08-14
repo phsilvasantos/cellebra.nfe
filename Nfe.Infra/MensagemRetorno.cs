@@ -14,7 +14,7 @@ namespace Nfe.Infra
                 Mensagem = "Nota Fiscal enviada com sucesso";
             }
 
-            if (CodMensagem == 101)
+            if (CodMensagem == 101 || CodMensagem == 128 )
             {
                 Mensagem = "Nota Fiscal cancelada com sucesso";
             }

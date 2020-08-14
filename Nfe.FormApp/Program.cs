@@ -35,7 +35,7 @@ namespace Nfe.FormApp
                 //operacao = 1 (Cancelar NFE);
                 //operacao = 4 (Carta de Correção NFE);
 
-                Parametro = 21567;
+                Parametro = 21246;
                 operacao = 0;
             }
             
