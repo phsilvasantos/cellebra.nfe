@@ -87,7 +87,7 @@ namespace Nfe.Infra
             doc.InsertBefore(xmlDec, root);
             doc.AppendChild(Nfe);
             doc.Save(this.PathDestino);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             
             //Assinar();
             //Validar();
@@ -459,9 +459,9 @@ namespace Nfe.Infra
         public void GetLoteDaNota()
         {
             //TROCA ARQUIVO
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 if (GetNumeroLote())
                 {
                     break;
@@ -473,9 +473,9 @@ namespace Nfe.Infra
             }
             if (this.GerouNumeroLoteOK)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 100; i++)
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(2000);
                     if (getRetornoDoLote())
                     {
                         break;
