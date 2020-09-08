@@ -87,7 +87,7 @@ namespace Nfe.Infra
             doc.InsertBefore(xmlDec, root);
             doc.AppendChild(Nfe);
             doc.Save(this.PathDestino);
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             
             //Assinar();
             //Validar();
@@ -461,7 +461,7 @@ namespace Nfe.Infra
             //TROCA ARQUIVO
             for (int i = 0; i < 100; i++)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 if (GetNumeroLote())
                 {
                     break;
@@ -475,7 +475,7 @@ namespace Nfe.Infra
             {
                 for (int i = 0; i < 100; i++)
                 {
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                     if (getRetornoDoLote())
                     {
                         break;
@@ -490,7 +490,7 @@ namespace Nfe.Infra
             {
                 for (int i = 0; i < 100; i++)
                 {
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                     if (getRetornoDoRecibo())
                     {
                         break;
