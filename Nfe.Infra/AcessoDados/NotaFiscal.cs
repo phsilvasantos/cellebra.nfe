@@ -86,7 +86,10 @@ namespace Nfe.Infra.AcessoDados
                 if (TipoNF == eTPNotaFiscal.eFaturamento)
                 {
                     Nota.indPag = Convert.ToInt32(FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codFormaPagtoNFE);
-                    Nota.tPag = FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codMeioPagamento.ToString();
+                    if (Nota.finNFe == 4) // 4 - Devolução de mercadoria
+                        Nota.tPag = "90"; //Sem pagamento
+                    else
+                        Nota.tPag = FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codMeioPagamento.ToString();
                 }
                 else
                 {
