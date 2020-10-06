@@ -77,26 +77,7 @@ namespace Nfe.Infra.AcessoDados
             else
                 Nota.Cliente = RepositorioCliente.GetClienteLocEntregaById(Convert.ToInt32(drProdNotaFiscal["ID_Cliente"].ToString()));
 
-            if (drProdNotaFiscal["id_FormaPagamento"].ToString() == null)
-            {
-                throw new Exception("A forma de pagamento não foi selecionada");
-            }
-            else
-            {
-                if (TipoNF == eTPNotaFiscal.eFaturamento)
-                {
-                    Nota.indPag = Convert.ToInt32(FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codFormaPagtoNFE);
-                    if (Nota.finNFe == 4) // 4 - Devolução de mercadoria
-                        Nota.tPag = "90"; //Sem pagamento
-                    else
-                        Nota.tPag = FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codMeioPagamento.ToString();
-                }
-                else
-                {
-                    Nota.indPag = 0;
-                    Nota.tPag = "01";
-                }
-            }
+
 
             //string tzd = "-03:00"; // UCT - Universal Coordinated Time (Normal)
             string tzd = "-02:00"; // UCT - Universal Coordinated Time (No horário de verão)
@@ -118,6 +99,34 @@ namespace Nfe.Infra.AcessoDados
                 Nota.finNFe = 4; // 4 - Devolução de mercadoria
             else
                 Nota.finNFe = 1; // 1 - NFE Normal
+
+            if (drProdNotaFiscal["id_FormaPagamento"].ToString() == null)
+            {
+                throw new Exception("A forma de pagamento não foi selecionada");
+            }
+            else
+            {
+                if (TipoNF == eTPNotaFiscal.eFaturamento)
+                {
+                    if (Nota.finNFe == 4) // 4 - Devolução de mercadoria
+                        Nota.tPag = "90"; //Sem pagamento
+                    else
+                    {
+                        Nota.indPag = Convert.ToInt32(FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codFormaPagtoNFE);
+                        Nota.tPag = FPagto.GetById(Convert.ToInt32(drProdNotaFiscal["id_FormaPagamento"].ToString())).codMeioPagamento.ToString();
+                    }
+                }
+                else
+                {
+                    if (Nota.finNFe == 4) // 4 - Devolução de mercadoria
+                        Nota.tPag = "90"; //Sem pagamento
+                    else
+                    {
+                        Nota.indPag = 0;
+                        Nota.tPag = "01";
+                    }
+                }
+            }
 
             Nota.procEmi = 0;
             Nota.verProc = "1.0";
@@ -150,6 +159,7 @@ namespace Nfe.Infra.AcessoDados
             Nota.protocolo = drProdNotaFiscal["numerodoprotocolo"].ToString();
             Nota.infadicionais = getInfAdicionaisNFE(id).Replace("-"," ").Replace("\\n","").Replace("\\","").Replace(" – ","");
             Nota.vPIS = 0;
+
             if (drProdNotaFiscal["id_transportadora"].ToString() != "")
             {
                 try

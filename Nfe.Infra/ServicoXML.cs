@@ -111,7 +111,11 @@ namespace Nfe.Infra
             XmlElement tPag = doc.CreateElement("tPag"); tPag.InnerText = Nota.tPag.Trim();
             XmlElement vPag = doc.CreateElement("vPag"); vPag.InnerText = Nota.vNF.Value.ToString("#0.00").Replace(',', '.');
 
-            detPag.AppendChild(indPag);
+            if (Nota.finNFe == 4) // 4 - Devolução de mercadoria
+                vPag.InnerText = "0.00";
+            else
+                detPag.AppendChild(indPag);
+
             detPag.AppendChild(tPag);
             detPag.AppendChild(vPag);
             pag.AppendChild(detPag);
